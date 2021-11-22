@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Viewer</title>
+  </head>
+  <body>
+    {% if attachments %}
+        {% for attachment in attachments %}
+        <div style="display: flex;">
+            {{ attachment['filename'] }}
+            <a href="/display?filepath={{ attachment['filepath'] }}"><button style="margin-left: 50px;">Show</button></a>
+            <a href="/download/{{ attachment['id'] }}"><button style="margin-left: 50px;">Download</button></a>
+        </div>
+        <br/>
+        {% endfor %}
+    {% else %}
+        <p>No attachments available :(</p>
+        <br/>
+    {% endif %}
+    <p>Email body:</p>
+    <br/>
+    {{ email_body }}
+  </body>
+</html>
